@@ -15,11 +15,12 @@ jobs:
           distribution: temurin
           java-version: "17"
  
-      - uses: android-actions/setup-android@v3
- 
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.7"
+ 
+      - name: Accetta le licenze dell'SDK Android già installato
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
  
       - name: Compila APK debug
         working-directory: launcher
